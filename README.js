@@ -78,7 +78,7 @@ shuffle(questions);
 
 var score = 0;
 function questionOutput (questionarray) {
-    alert("Welcome to the Country Capitals Trivia Game!  There are 10 questions.  You have 5 seconds to answer each question.");
+    alert("Welcome to the Country Capitals Trivia Game!  There are 10 questions.  You have 5 seconds to answer each question.  Answers are not case sensitive.");
     for (var i = 0; i < questionarray.length; i++) {
         var start = new Date();
         var start2 = start.getTime();
