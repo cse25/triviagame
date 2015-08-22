@@ -12,7 +12,7 @@ var q2 = {
 };
 
 var q3 = {
-    question: "What is the capital of the United Arab Emirates?",
+    question: "What is the capital of The United Arab Emirates?",
     answer: "ABU DHABI"
 };
 
@@ -77,8 +77,9 @@ shuffle(questions);
 //     depending on this percentage.
 
 var score = 0;
+var total = 0;
 function questionOutput (questionarray) {
-    alert("Welcome to the Country Capitals Trivia Game!  There are 10 questions.  You have 5 seconds to answer each question.  Answers are not case sensitive.");
+    alert("Welcome to the Country Capitals Trivia Game!  There are 10 questions.  You have 10 seconds to answer each question.  Answers are not case sensitive.");
     for (var i = 0; i < questionarray.length; i++) {
         var start = new Date();
         var start2 = start.getTime();
@@ -87,14 +88,16 @@ function questionOutput (questionarray) {
         if (uppercaseInput === questionarray[i].answer){
             var elapsed = new Date()
             var elapsed2 = elapsed.getTime() - start2;
-            if (elapsed2 < 5000) {
-                alert("Correct!");
+            if (elapsed2 < 10000) {
                 score += 1;
+                total += 1;
+                alert("Correct!  Your current score is: " + score + " out of " + total);
             } else {
-                alert("Correct, but you took too long to answer.");
+                alert("Correct, but you took too long to answer.  Your current score is: " + score + " out of " + total);
             }
         } else {
-            alert("Incorrect.")
+            total += 1;
+            alert("Incorrect. Your total score is: " + score + " out of " + total);
         }
     }
     if (score / questions.length >= 0.70){
