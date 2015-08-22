@@ -13,7 +13,7 @@ var q2 = {
 
 var q3 = {
     question: "What is the capital of New York?",
-    answer: "BUFFALO"
+    answer: "ALBANY"
 };
 
 var q4 = {
