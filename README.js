@@ -1,6 +1,6 @@
-//Country Capitals Trivia Game
+//Nation Capitals Trivia Game
 
-//Ten objects with question-answer pairs.
+//Objects with question-answer pairs.
 var q1 = {
     question: "What is the capital of Kazakhstan?",
     answer: "ASTANA"
@@ -12,7 +12,7 @@ var q2 = {
 };
 
 var q3 = {
-    question: "What is the capital of the United Arab Emirates?",
+    question: "What is the capital of The United Arab Emirates?",
     answer: "ABU DHABI"
 };
 
@@ -51,8 +51,109 @@ var q10 = {
     answer: "BUENOS AIRES"
 };
 
+var q11 = {
+    question: "What is the capital of France?",
+    answer: "PARIS"
+};
+
+var q12 = {
+    question: "What is the capital of South Korea?",
+    answer: "SEOUL"
+};
+
+var q13 = {
+    question: "What is the capital of Iran?",
+    answer: "TEHRAN"
+};
+
+var q14 = {
+    question: "What is the capital of Poland?",
+    answer: "WARSAW"
+};
+
+var q15 = {
+    question: "What is the capital of Peru?",
+    answer: "LIMA"
+};
+
+var q16 = {
+    question: "What is the capital of Denmark?",
+    answer: "COPENHAGEN"
+};
+
+var q17 = {
+    question: "What is the capital of Russia?",
+    answer: "MOSCOW"
+};
+
+var q18 = {
+    question: "What is the capital of Egypt?",
+    answer: "CAIRO"
+};
+
+var q19 = {
+    question: "What is the capital of Finland?",
+    answer: "HELSINKI"
+};
+
+var q20 = {
+    question: "What is the capital of India?",
+    answer: "NEW DELHI"
+};
+
+var q21 = {
+    question: "What is the capital of Madagascar?",
+    answer: "ANTANANARIVO"
+};
+
+var q22 = {
+    question: "What is the capital of Sri Lanka?",
+    answer: "SRI JAYAWARDENPURA KOTTE"
+};
+
+var q23 = {
+    question: "What is the capital of Macedonia?",
+    answer: "SKOPJE"
+};
+
+var q24 = {
+    question: "What is the capital of Mali?",
+    answer: "BAMAKO"
+};
+
+var q25 = {
+    question: "What is the capital of Maldives?",
+    answer: "MALE"
+};
+
+var q26 = {
+    question: "What is the capital of Albania?",
+    answer: "TIRANA"
+};
+
+var q27 = {
+    question: "What is the capital of Cote d'Ivoire?",
+    answer: "YAMOUSSOUKRO"
+};
+
+var q28 = {
+    question: "What is the capital of Djibouti?",
+    answer: "DJIBOUTI"
+};
+
+var q29 = {
+    question: "What is the capital of Ecuador?",
+    answer: "QUITO"
+};
+
+var q30 = {
+    question: "What is the capital of Turkey?",
+    answer: "ANKARA"
+};
 //An array of the question objects.
-var questions = [q1,q2,q3,q4,q5,q6,q7,q8,q9,q10];
+var mediumQuestions = [q1,q2,q3,q4,q5,q6,q7,q8,q9,q10];
+var easyQuestions = [q11,q12,q13,q14,q15,q16,q17,q18,q19,q20];
+var hardQuestions = [q21,q22,q23,q24,q25,q26,q27,q28,q29,q30];
 
 //Fisher-Yates Shuffle function applied to array.
 function shuffle(array) {
@@ -65,7 +166,9 @@ function shuffle(array) {
   }
   return array;
 }
-shuffle(questions);
+shuffle(mediumQuestions);
+shuffle(easyQuestions);
+shuffle(hardQuestions);
 
 //This function takes an array of objects full of Q&A pairs and does the following:
 //1.)  Initiates a for loop that upon each iteration: A.)  Stores the current time in milliseconds in the variable, "start2".
@@ -77,8 +180,9 @@ shuffle(questions);
 //     depending on this percentage.
 
 var score = 0;
+var total = 0;
 function questionOutput (questionarray) {
-    alert("Welcome to the Country Capitals Trivia Game!  There are 10 questions.  You have 5 seconds to answer each question.  Answers are not case sensitive.");
+    alert("There are 10 questions.  You have 10 seconds to answer each question.  Answers are not case sensitive.");
     for (var i = 0; i < questionarray.length; i++) {
         var start = new Date();
         var start2 = start.getTime();
@@ -87,21 +191,38 @@ function questionOutput (questionarray) {
         if (uppercaseInput === questionarray[i].answer){
             var elapsed = new Date()
             var elapsed2 = elapsed.getTime() - start2;
-            if (elapsed2 < 5000) {
-                alert("Correct!");
+            if (elapsed2 < 10000) {
                 score += 1;
+                total += 1;
+                alert("Correct!  Your current score is: " + score + " out of " + total);
             } else {
-                alert("Correct, but you took too long to answer.");
+                alert("Correct, but you took too long to answer.  Your current score is: " + score + " out of " + total);
             }
         } else {
-            alert("Incorrect.")
+            total += 1;
+            alert("Incorrect. The correct answer is " + questionarray[i].answer + ".  Your total score is: " + score + " out of " + total);
         }
     }
-    if (score / questions.length >= 0.70){
-    alert("You got " + score + " out of " + questions.length + " answers correct.  Good Job!");
+    if (score / 10 >= 0.70){
+    alert("You got " + score + " out of 10 answers correct.  Great Job!");
     } else {
-    alert("You got " + score + " out of " + questions.length + " answers correct.  Better luck next time.");
+    alert("You got " + score + " out of 10 answers correct.  Better luck next time.");
+    }
+}
+
+function chooseDifficulty() {
+    var difficultyChoice = prompt("Welcome to the Country Capitals Trivia Game!  Please type 'easy', 'medium', or 'hard' to select the difficulty");
+    var upperCaseDifficultyChoice = difficultyChoice.toUpperCase();
+    if (upperCaseDifficultyChoice === "EASY") {
+        questionOutput(easyQuestions);
+    } else if (upperCaseDifficultyChoice === "MEDIUM") {
+        questionOutput(mediumQuestions);
+    } else if (upperCaseDifficultyChoice === "HARD") {
+        questionOutput(hardQuestions);
+    } else {
+        alert("Not a valid entry.  Please try again");
+        chooseDifficulty();
     }
 };
 
-questionOutput(questions);
+chooseDifficulty();
