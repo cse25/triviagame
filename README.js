@@ -1,6 +1,6 @@
 //Nation Capitals Trivia Game
 
-//Objects with question-answer pairs.
+//Objects with questions and answers.
 var q1 = {
     question: "What is the capital of Kazakhstan?",
     answer: "ASTANA"
@@ -183,15 +183,17 @@ var score = 0;
 var total = 0;
 function questionOutput (questionarray) {
     alert("There are 10 questions.  You have 10 seconds to answer each question.  Answers are not case sensitive.");
+    var quizStartTime = new Date();
+    var quizStartTime2 = quizStartTime.getTime();
     for (var i = 0; i < questionarray.length; i++) {
-        var start = new Date();
-        var start2 = start.getTime();
+        var questionStartTime = new Date();
+        var questionStartTime2 = questionStartTime.getTime();
         var userInput = prompt(questionarray[i].question);
         var uppercaseInput = userInput.toUpperCase();
         if (uppercaseInput === questionarray[i].answer){
-            var elapsed = new Date()
-            var elapsed2 = elapsed.getTime() - start2;
-            if (elapsed2 < 10000) {
+            var questionEndTime = new Date()
+            var elapsed = questionEndTime.getTime() - questionStartTime2;
+            if (elapsed < 10000) {
                 score += 1;
                 total += 1;
                 alert("Correct!  Your current score is: " + score + " out of " + total);
@@ -203,12 +205,16 @@ function questionOutput (questionarray) {
             alert("Incorrect. The correct answer is " + questionarray[i].answer + ".  Your total score is: " + score + " out of " + total);
         }
     }
+    var quizEndTime = new Date();
+    var totalElapsedTime = quizEndTime.getTime() - quizStartTime2;
+    var totalElapsedTimeSeconds = totalElapsedTime / 1000;
+    var totalElapsedTimeSecondsRounded = Math.round(totalElapsedTimeSeconds*10)/10;
     if (score / 10 >= 0.70){
-    alert("You got " + score + " out of 10 answers correct.  Great Job!");
+        alert("You got " + score + " out of 10 answers correct.  Great Job!  The quiz took you " + totalElapsedTimeSecondsRounded + " seconds to complete.");
     } else {
-    alert("You got " + score + " out of 10 answers correct.  Better luck next time.");
+        alert("You got " + score + " out of 10 answers correct.  Better luck next time.  The quiz took you " + totalElapsedTimeSecondsRounded + " seconds to complete.");
     }
-}
+};
 
 function chooseDifficulty() {
     var difficultyChoice = prompt("Welcome to the Country Capitals Trivia Game!  Please type 'easy', 'medium', or 'hard' to select the difficulty");
@@ -220,7 +226,7 @@ function chooseDifficulty() {
     } else if (upperCaseDifficultyChoice === "HARD") {
         questionOutput(hardQuestions);
     } else {
-        alert("Not a valid entry.  Please try again");
+        alert("Not a valid entry.  Please try again.");
         chooseDifficulty();
     }
 };
