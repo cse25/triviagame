@@ -198,6 +198,7 @@ function questionOutput (questionarray) {
                 total += 1;
                 alert("Correct!  Your current score is: " + score + " out of " + total);
             } else {
+                total += 1;
                 alert("Correct, but you took too long to answer.  Your current score is: " + score + " out of " + total);
             }
         } else {
