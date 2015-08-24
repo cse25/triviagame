@@ -217,7 +217,7 @@ function questionOutput (questionarray) {
 };
 
 function chooseDifficulty() {
-    var difficultyChoice = prompt("Welcome to the Country Capitals Trivia Game!  Please type 'easy', 'medium', or 'hard' to select the difficulty");
+    var difficultyChoice = prompt("Welcome to the Nation Capitals Trivia Game!  Please type 'easy', 'medium', or 'hard' to select the difficulty");
     var upperCaseDifficultyChoice = difficultyChoice.toUpperCase();
     if (upperCaseDifficultyChoice === "EASY") {
         questionOutput(easyQuestions);
